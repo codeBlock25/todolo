@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 import 'package:todolo/logic/logic.dart';
 import 'package:todolo/main.dart';
 import 'package:todolo/route/route.dart';
@@ -13,6 +14,7 @@ import 'package:todolo/screens/empty/page.dart';
 import 'package:todolo/screens/error/page.dart';
 import 'package:todolo/screens/main/dialogs/new_project.dart';
 import 'package:todolo/screens/screens.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 
 class MainScreen extends RouteFulWidget {
   const MainScreen({super.key});
@@ -64,7 +66,73 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Projects'), centerTitle: true),
+      appBar: AppBar(
+        leading: Builder(
+          builder: (context) {
+            return PopupMenuButton<AdaptiveThemeMode>(
+              icon: Icon(Icons.brightness_6),
+              tooltip: 'Switch Theme',
+              onSelected: (mode) {
+                switch (mode) {
+                  case AdaptiveThemeMode.light:
+                    AdaptiveTheme.of(context).setLight();
+                    break;
+                  case AdaptiveThemeMode.dark:
+                    AdaptiveTheme.of(context).setDark();
+                    break;
+                  case AdaptiveThemeMode.system:
+                    AdaptiveTheme.of(context).setSystem();
+                    break;
+                }
+              },
+              color: context.theme.scaffoldBackgroundColor.darken(),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: AdaptiveThemeMode.light,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.light_mode,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Light', style: context.textTheme.bodySmall),
+                    ],
+                  ),
+                ),
+                PopupMenuItem(
+                  value: AdaptiveThemeMode.dark,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.dark_mode,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Dark', style: context.textTheme.bodySmall),
+                    ],
+                  ),
+                ),
+                PopupMenuItem(
+                  value: AdaptiveThemeMode.system,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.brightness_auto,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      SizedBox(width: 8),
+                      Text('System', style: context.textTheme.bodySmall),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+        title: Text('Projects'),
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final bool? didAdd = await showAdaptiveDialog(
@@ -133,9 +201,8 @@ class _MainScreenState extends State<MainScreen> {
                                               final confirmed =
                                                   await _confirmDelete(context);
                                               if (confirmed) {
-                                                await _projectService.deleteProject(
-                                                  item.id,
-                                                );
+                                                await _projectService
+                                                    .deleteProject(item.id);
                                               }
                                             },
                                             backgroundColor: Colors.red,
@@ -204,17 +271,12 @@ class _MainScreenState extends State<MainScreen> {
                             opacity: animation,
                             child: ListTile(
                               key: ValueKey(oldItem.id),
-                              titleTextStyle:
-                              context.textTheme.bodyMedium,
-                              subtitleTextStyle: context
-                                  .textTheme
-                                  .bodySmall
+                              titleTextStyle: context.textTheme.bodyMedium,
+                              subtitleTextStyle: context.textTheme.bodySmall
                                   ?.copyWith(
-                                color: appTheme
-                                    .palette
-                                    .textColorLight
-                                    .withAlpha(170),
-                              ),
+                                    color: appTheme.palette.textColorLight
+                                        .withAlpha(170),
+                                  ),
                               title: Text(
                                 oldItem.name.capitalize ?? '',
                                 maxLines: 1,
@@ -223,16 +285,15 @@ class _MainScreenState extends State<MainScreen> {
                               ),
                               iconColor: context.theme.primaryColor,
                               contentPadding: 10.cl(10, 20).pdAll,
-                              subtitle: (oldItem.description ?? '')
-                                  .isNotEmpty
+                              subtitle: (oldItem.description ?? '').isNotEmpty
                                   .whenOnly(
-                                use: Text(
-                                  oldItem.description ?? '',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  softWrap: false,
-                                ),
-                              ),
+                                    use: Text(
+                                      oldItem.description ?? '',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: false,
+                                    ),
+                                  ),
                               leading: Icon(LucideIcons.menu),
                             ),
                           );

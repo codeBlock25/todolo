@@ -35,6 +35,7 @@ class Task {
   Priority priority;
   DateTime dueDate;
   String status;
+  DateTime? completedAt;
 
   Task({
     required this.id,
@@ -46,6 +47,7 @@ class Task {
     required this.priority,
     required this.dueDate,
     required this.status,
+    this.completedAt,
   });
 
   Task copyWith({
@@ -58,6 +60,7 @@ class Task {
     Priority? priority,
     DateTime? dueDate,
     String? status,
+    DateTime? completedAt,
   }) => Task(
     id: id ?? this.id,
     title: title ?? this.title,
@@ -68,6 +71,7 @@ class Task {
     priority: priority ?? this.priority,
     dueDate: dueDate ?? this.dueDate,
     status: status ?? this.status,
+    completedAt: completedAt ?? this.completedAt,
   );
 
   factory Task.fromJson(Map<String, dynamic> json) => Task(
@@ -80,6 +84,9 @@ class Task {
     priority: Priority.fromValue(json["priority"]),
     dueDate: DateTime.parse(json["dueDate"]),
     status: json["status"],
+    completedAt: json["completedAt"] != null
+        ? DateTime.parse(json["completedAt"])
+        : null,
   );
 
   Map<String, dynamic> toJson() => {
@@ -95,5 +102,8 @@ class Task {
     "dueDate":
         "${dueDate.year.toString().padLeft(4, '0')}-${dueDate.month.toString().padLeft(2, '0')}-${dueDate.day.toString().padLeft(2, '0')}",
     "status": status,
+    "completedAt": completedAt != null
+        ? "${completedAt!.year.toString().padLeft(4, '0')}-${completedAt!.month.toString().padLeft(2, '0')}-${completedAt!.day.toString().padLeft(2, '0')}"
+        : null,
   };
 }

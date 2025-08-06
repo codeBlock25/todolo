@@ -41,6 +41,19 @@ class TaskService extends GetxController {
     await storage.write(key, tasks.map((e) => e.toJson()).toList());
   }
 
+  Future<void> toggleTaskCompleted(String id) async {
+    await 2.seconds.delay();
+    final task = tasks.firstWhereOrNull((element) => element.id == id);
+    final index = tasks.indexWhere((element) => element.id == id);
+    if (task == null || index == -1) {
+      throw ErrorResponse(message: 'Task not found');
+    }
+    tasks[index] = task.copyWith(
+      completedAt: task.completedAt == null ? DateTime.now() : null,
+    );
+    await storage.write(key, tasks.map((e) => e.toJson()).toList());
+  }
+
   Future<void> updateTask(
     String id, {
     String? title,

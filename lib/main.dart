@@ -59,8 +59,8 @@ class App extends StatelessWidget {
               return AdaptiveTheme(
                 light: appTheme.light,
                 dark: appTheme.dark,
-                initial: AdaptiveThemeMode.dark,
-                debugShowFloatingThemeButton: true,
+                initial: AdaptiveThemeMode.system,
+                debugShowFloatingThemeButton: false,
                 builder: (ThemeData lightTheme, ThemeData darkTheme) {
                   return GetMaterialApp(
                     title: AppConfig.platformName,

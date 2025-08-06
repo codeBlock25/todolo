@@ -15,14 +15,15 @@ ThemeData _darkTheme(AppThemePalette palette) {
       tertiary: palette.tertiary,
     ),
     datePickerTheme: DatePickerThemeData(
-      backgroundColor: palette.background,
+      backgroundColor: palette.backgroundDark,
       dividerColor: palette.caption,
+      headerForegroundColor: palette.textColorDark,
       dayOverlayColor: palette.primaryColor.withAlpha(40).all,
       dayForegroundColor: WidgetStateColor.resolveWith((state) {
         if (state.contains(WidgetState.selected)) {
           return palette.textColorDark.lighten(40);
         }
-        return palette.textColorLight;
+        return palette.textColorDark;
       }),
       dayBackgroundColor: WidgetStateColor.resolveWith((state) {
         if (state.contains(WidgetState.selected)) {
@@ -41,7 +42,7 @@ ThemeData _darkTheme(AppThemePalette palette) {
         if (state.contains(WidgetState.selected)) {
           return palette.textColorDark.lighten(40);
         }
-        return palette.textColorLight;
+        return palette.textColorDark;
       }),
       todayBackgroundColor: WidgetStateColor.resolveWith((state) {
         if (state.contains(WidgetState.selected)) {
@@ -53,46 +54,46 @@ ThemeData _darkTheme(AppThemePalette palette) {
         if (state.contains(WidgetState.selected)) {
           return palette.textColorDark.lighten(40);
         }
-        return palette.textColorLight;
+        return palette.textColorDark;
       }),
       weekdayStyle: TextStyle(
         fontSize: 14.cl(12, 16),
         fontWeight: FontWeight.w400,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       rangePickerHeaderHelpStyle: TextStyle(
         fontSize: 14.cl(12, 16),
         fontWeight: FontWeight.w400,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       rangePickerHeaderHeadlineStyle: TextStyle(
         fontSize: 14.cl(12, 16),
         fontWeight: FontWeight.w400,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       headerHeadlineStyle: TextStyle(
         fontSize: 16.cl(16, 20),
         fontWeight: FontWeight.w700,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       headerHelpStyle: TextStyle(
         fontSize: 14.cl(14, 18),
         fontWeight: FontWeight.w700,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       dayStyle: TextStyle(
         fontSize: 14.cl(12, 16),
         fontWeight: FontWeight.w400,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       yearStyle: TextStyle(
         fontSize: 14.cl(12, 16),
         fontWeight: FontWeight.w400,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
     ),
     hoverColor: palette.primaryColor.darken(5).withValues(alpha: 0.2),
-    scaffoldBackgroundColor: palette.background,
+    scaffoldBackgroundColor: palette.backgroundDark,
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: Colors.grey[900],
       selectionColor: palette.primaryColor.withValues(alpha: 0.5),
@@ -134,30 +135,42 @@ ThemeData _darkTheme(AppThemePalette palette) {
     ),
     appBarTheme: AppBarTheme(
       elevation: 0,
-      backgroundColor: palette.background,
-      surfaceTintColor: palette.background,
+      backgroundColor: palette.backgroundDark,
+      surfaceTintColor: palette.backgroundDark,
       centerTitle: false,
       titleTextStyle: TextStyle(
         fontSize: 16.cl(16, 22),
         fontWeight: FontWeight.w600,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
-      iconTheme: IconThemeData(color: palette.textColorLight),
+      iconTheme: IconThemeData(color: palette.textColorDark),
       actionsIconTheme: IconThemeData(color: palette.primaryColorLight),
       scrolledUnderElevation: 10,
-      foregroundColor: palette.textColorLight,
+      foregroundColor: palette.textColorDark,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: palette.background,
-        systemNavigationBarColor: palette.background,
+        statusBarColor: palette.backgroundDark,
+        systemNavigationBarColor: palette.backgroundDark,
         statusBarBrightness: GetPlatform.isIOS
-            ? Brightness.light
-            : Brightness.dark,
+            ? Brightness.dark
+            : Brightness.light,
         systemNavigationBarIconBrightness: GetPlatform.isIOS
-            ? Brightness.light
-            : Brightness.dark,
+            ? Brightness.dark
+            : Brightness.light,
         statusBarIconBrightness: GetPlatform.isIOS
-            ? Brightness.light
-            : Brightness.dark,
+            ? Brightness.dark
+            : Brightness.light,
+      ),
+    ),
+    dialogTheme: DialogThemeData(
+      backgroundColor: palette.backgroundDark,
+      titleTextStyle: TextStyle(
+        fontSize: 16.cl(16, 20),
+        fontWeight: FontWeight.w700,
+        color: palette.textColorDark,
+      ),
+      contentTextStyle: TextStyle(
+        fontSize: 16.cl(16, 20),
+        color: palette.textColorDark,
       ),
     ),
     navigationBarTheme: NavigationBarThemeData(
@@ -308,47 +321,47 @@ ThemeData _darkTheme(AppThemePalette palette) {
       titleLarge: TextStyle(
         fontSize: 24.cl(36, 36),
         fontWeight: FontWeight.w900,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       titleMedium: TextStyle(
         fontSize: 22.cl(22, 32),
         fontWeight: FontWeight.w900,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       titleSmall: TextStyle(
         fontSize: 20.cl(20, 28),
         fontWeight: FontWeight.w900,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       headlineLarge: TextStyle(
         fontSize: 20.cl(24, 26),
         fontWeight: FontWeight.w700,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       headlineMedium: TextStyle(
         fontSize: 16.cl(16, 20),
         fontWeight: FontWeight.w700,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       headlineSmall: TextStyle(
         fontSize: 14.cl(14, 16),
         fontWeight: FontWeight.w700,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       bodyLarge: TextStyle(
         fontSize: 22.cl(24, 30),
         fontWeight: FontWeight.w400,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       bodyMedium: TextStyle(
         fontSize: 16.cl(16, 20),
         fontWeight: FontWeight.w400,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       bodySmall: TextStyle(
         fontSize: 14.cl(12, 16),
         fontWeight: FontWeight.w400,
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       labelLarge: TextStyle(
         fontSize: 20.cl(18, 32),
@@ -378,23 +391,23 @@ ThemeData _darkTheme(AppThemePalette palette) {
       contentPadding: 15.cl(10, 45).pdXY(5.cl(5, 10)),
       labelStyle: TextStyle(
         fontSize: 16.cl(16, 20),
-        color: palette.textColorLight,
+        color: palette.textColorDark,
       ),
       hintStyle: TextStyle(
         fontSize: 16.cl(16, 20),
         textBaseline: TextBaseline.alphabetic,
-        color: palette.textColorLight.lighten(40),
+        color: palette.textColorDark.darken(40),
         fontWeight: FontWeight.normal,
       ),
-      prefixIconColor: palette.textColorLight,
-      suffixIconColor: palette.textColorLight.withValues(alpha: 0.7),
+      prefixIconColor: palette.textColorDark,
+      suffixIconColor: palette.textColorDark.withValues(alpha: 0.7),
       hoverColor: palette.primaryColor.withValues(alpha: 0.05),
       errorBorder: OutlineInputBorder(
         borderRadius: 8.cl(8, 17).rc.brAll,
         borderSide: BorderSide(width: 2.cl(2, 4), color: palette.error),
       ),
       errorMaxLines: 2,
-      focusColor: palette.background,
+      focusColor: palette.backgroundDark,
       fillColor: palette.backgroundDark,
       iconColor: Colors.grey[900],
       filled: true,
