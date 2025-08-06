@@ -1,0 +1,51 @@
+name: todolo
+description: "Todolo is a modern task and project management app that combines the intuitive simplicity of a to-do list with the powerful flexibility of a Kanban board."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  adaptive_theme: ^3.7.0
+  animated_list_plus: ^0.5.2
+  animated_text_kit: ^4.2.3
+  badges: ^3.1.2
+  cupertino_icons: ^1.0.8
+  dio: ^5.8.0+1
+  flutter_slidable: ^4.0.0
+  validatorless: ^1.2.4
+  extension_helpers:
+  flutter:
+    sdk: flutter
+  get: ^4.7.2
+  get_storage: ^2.1.1
+  google_fonts: ^6.2.1
+  intl: ^0.20.2
+  jiffy: ^6.4.3
+  lucide_icons_flutter: ^3.0.8
+  modal_bottom_sheet: ^3.0.0
+  responsive_sizer: ^3.3.1
+  shimmer: ^3.0.0
+  tinycolor2: ^3.0.1
+  uuid: ^4.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+
+dependency_overrides:
+  extension_helpers:
+    path: extension_helpers
+
